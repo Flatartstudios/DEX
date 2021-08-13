@@ -9,8 +9,6 @@ import "../node_modules/@openzeppelin/contracts/access/Ownable.sol";
 import "../contracts/Wallet.sol";
 
 contract Dex is Wallet {
-	// Dex.defaults = ({gasPrice: 0,})
-
 	using SafeMath for uint256;
 
 	enum side {
@@ -192,12 +190,6 @@ contract Dex is Wallet {
 
 			orders[i].filled = orders[i].filled.add(filled);
 			totalFilled = totalFilled.add(filled);
-
-			// uint256 cost = filled.mul(orders[i].price);
-
-			// if (orderSide == side.BUY) {
-			// 	require(balances[msg.sender]["ETH"] >= cost && balances[msg.sender]["ETH"] != 0);
-			// }
 
 			executeOrder(orderSide, _ticker, orders[i].traderAddress, filled, orders[i].price);
 		}

@@ -7,7 +7,6 @@ contract("Dex", (accounts) => {
 		let dex = await Dex.deployed();
 		let link = await Link.deployed();
 
-		// await link.approve(dex.address, 500);
 		// dex.addToken(web3.utils.fromUtf8("LINK"), link.address);
 		// await dex.deposit(web3.utils.fromUtf8("LINK"), 100);
 
