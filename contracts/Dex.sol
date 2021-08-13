@@ -144,17 +144,25 @@ contract Dex is Wallet {
 
 		if (orderSide == side.BUY) {
 			checkBalance(msg.sender, orderSide, _ticker, price, _amount);
-			balances[traderAddress][_ticker] = balances[traderAddress][_ticker].sub(_amount); // remove ERC20 Token from  order on sell side address
-			balances[traderAddress]["ETH"] = balances[traderAddress]["ETH"].add(cost); //  add ETH to seller address
-			balances[msg.sender][_ticker] = balances[msg.sender][_ticker].add(_amount); // add ERC20 Token to buyer address
-			balances[msg.sender]["ETH"] = balances[msg.sender]["ETH"].sub(cost); // remove ETH from  buyer side address
+			// remove ERC20 Token from  order on sell side address
+			balances[traderAddress][_ticker] = balances[traderAddress][_ticker].sub(_amount);
+			//  add ETH to seller address
+			balances[traderAddress]["ETH"] = balances[traderAddress]["ETH"].add(cost);
+			// add ERC20 Token to buyer address
+			balances[msg.sender][_ticker] = balances[msg.sender][_ticker].add(_amount);
+			// remove ETH from  buyer side address
+			balances[msg.sender]["ETH"] = balances[msg.sender]["ETH"].sub(cost);
 		}
 		if (orderSide == side.SELL) {
 			checkBalance(msg.sender, orderSide, _ticker, price, _amount);
-			balances[traderAddress]["ETH"] = balances[traderAddress]["ETH"].sub(cost); // remove ETH from  order on buyer side address
-			balances[traderAddress][_ticker] = balances[traderAddress][_ticker].add(_amount); //  add erc20 Token to buyer address
-			balances[msg.sender]["ETH"] = balances[msg.sender]["ETH"].add(cost); // add ETH to seller address
-			balances[msg.sender][_ticker] = balances[msg.sender][_ticker].sub(_amount); // remove erc20 Token from   side address
+			// remove ETH from  order on buyer side address
+			balances[traderAddress]["ETH"] = balances[traderAddress]["ETH"].sub(cost);
+			//  add erc20 Token to buyer address
+			balances[traderAddress][_ticker] = balances[traderAddress][_ticker].add(_amount);
+			// add ETH to seller address
+			balances[msg.sender]["ETH"] = balances[msg.sender]["ETH"].add(cost);
+			// remove erc20 Token from   side address
+			balances[msg.sender][_ticker] = balances[msg.sender][_ticker].sub(_amount);
 		}
 	}
 
