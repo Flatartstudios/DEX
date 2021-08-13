@@ -170,7 +170,7 @@ contract Dex is Wallet {
 		if (orderSide == side.BUY) {
 			marketOrderSide = 1;
 		} else {
-			// if sell order
+			// if this is a sell order
 			require(balances[msg.sender][_ticker] >= _amount, "ERC20 Token balance too low!!");
 			marketOrderSide = 0;
 		}
